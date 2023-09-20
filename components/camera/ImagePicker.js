@@ -1,9 +1,13 @@
 import { View, StyleSheet, Text, Image } from "react-native";
 import { Camera, CameraType } from "expo-camera";
 import IconButton from "../ui/IconButton";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Dimensions } from "react-native";
 import { Colors } from "../../constants/styles";
+import {
+  requestForegroundPermissionsAsync,
+  getCurrentPositionAsync,
+} from "expo-location";
 
 const ImagePicker = () => {
   const cameraRef = useRef();
@@ -11,6 +15,15 @@ const ImagePicker = () => {
   const [isCameraReady, setCameraReady] = useState(false);
   const [cameraPermission, requestCameraPermission] =
     Camera.useCameraPermissions();
+
+  useEffect(() => {
+    (async () => {
+      const { status } = await requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        console.log("Location permission denied");
+      }
+    })();
+  }, []);
 
   if (!cameraPermission) {
     return <View />;
@@ -53,7 +66,7 @@ const ImagePicker = () => {
         <IconButton
           icon="camera"
           size={32}
-          color="white"
+          color={Colors.primary100}
           onPress={takePicture}
         />
       </Camera>

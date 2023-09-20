@@ -11,8 +11,6 @@ import {
 import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { View, Button } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 
 //Screens
 import LoginScreen from "./screens/LoginScreen";
@@ -20,6 +18,7 @@ import SignupScreen from "./screens/SignupScreen";
 import WelcomeScreen from "./screens/WelcomeScreen";
 import AllPlacesScreen from "./screens/AllPlacesScreen";
 import AddplaceScreen from "./screens/AddPlaceScreen";
+import MapScreen from "./screens/MapScreen";
 
 //Tools
 import AuthContextProvider, { AuthContext } from "./store/AuthContext";
@@ -40,6 +39,7 @@ const AuthStack = () => {
     >
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Signup" component={SignupScreen} />
+      {/* Får inte mapscreen till att fungera här...  */}
     </Stack.Navigator>
   );
 };
@@ -99,6 +99,11 @@ const Navigation = () => {
             })}
           />
           <Drawer.Screen name="AddPlace" component={AddplaceScreen} />
+          <Drawer.Screen
+            name="MapScreen"
+            component={MapScreen}
+            options={{ title: "Choose location" }}
+          />
         </Drawer.Navigator>
       ) : (
         <AuthStack />
