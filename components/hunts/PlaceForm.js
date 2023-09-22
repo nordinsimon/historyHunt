@@ -11,10 +11,6 @@ const PlaceForm = ({ addPlaceHandler }) => {
   const [image, setImage] = useState();
   const [location, setLocation] = useState();
 
-  const titleHandler = (text) => {
-    setTitle(text);
-  };
-
   const imageHandler = (uri) => {
     setImage(uri);
   };
@@ -33,9 +29,9 @@ const PlaceForm = ({ addPlaceHandler }) => {
     <ScrollView style={styles.scrollView}>
       <View style={styles.formContainer}>
         <Text style={styles.title}>Title</Text>
-        <TextInput style={styles.input} onChange={titleHandler} value={title} />
+        <TextInput style={styles.input} onChangeText={setTitle} value={title} />
       </View>
-      <ImagePicker ImageHandler={imageHandler} />
+      <ImagePicker imageHandler={imageHandler} />
       <LocationPicker locationHandler={locationHandler} />
       <Button style={styles.button} onPress={savePoint}>
         Save point

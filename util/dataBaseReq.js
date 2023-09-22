@@ -1,9 +1,13 @@
+import { useContext } from "react";
+
+import { AuthContext } from "../store/AuthContext";
+const authCtx = useContext(AuthContext);
 
 const url =
-  "https://historyhunt-affe2-default-rtdb.europe-west1.firebasedatabase.app/";
+  "https://authentication-app-614a8-default-rtdb.europe-west1.firebasedatabase.app/";
 
 export const addNewData = (location, value) => {
-  fetch(url + `${location}.json`, {
+  fetch(url + `${location}.json/?auth=` + authCtx.token, {
     method: "POST",
     body: JSON.stringify(value),
   }).then((resp) => {
@@ -12,7 +16,7 @@ export const addNewData = (location, value) => {
 };
 
 export const addData = (location, key, value) => {
-  fetch(url + `${location}/${key}.json` , {
+  fetch(url + `${location}/${key}.json/?auth=` + authCtx.token, {
     method: "PUT",
     body: JSON.stringify(value),
   }).then((resp) => {
@@ -21,7 +25,7 @@ export const addData = (location, key, value) => {
 };
 
 export const getData = async (location) => {
-  const resp = await fetch(url + `${location}.json`);
+  const resp = await fetch(url + `${location}.json/?auth=` + authCtx.token);
   const data = await resp.json();
   return data;
 };

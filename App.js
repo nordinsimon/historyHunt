@@ -17,10 +17,9 @@ import LoginScreen from "./screens/LoginScreen";
 import SignupScreen from "./screens/SignupScreen";
 import WelcomeScreen from "./screens/WelcomeScreen";
 import AllPlacesScreen from "./screens/AllPlacesScreen";
+import SpecificHuntScreen from "./screens/SpecificHuntScreen";
 import AddplaceScreen from "./screens/AddPlaceScreen";
 import MapScreen from "./screens/MapScreen";
-
-import ProfilePage from "./components/profilePage/ProfilePage";
 
 //Tools
 import AuthContextProvider, { AuthContext } from "./store/AuthContext";
@@ -86,10 +85,9 @@ const Navigation = () => {
           drawerContent={(props) => <CustomDrawerContent {...props} />}
         >
           <Drawer.Screen name="Welcome" component={WelcomeScreen} />
-          <Drawer.Screen name="ProfilePage" component={ProfilePage} />
           <Drawer.Screen
-            name="AllPlacesScreen"
-            component={AllPlacesScreen}
+            name="SpecificHuntScreen"
+            component={SpecificHuntScreen}
             options={({ navigation }) => ({
               headerRight: ({ tintColor }) => (
                 <IconButton

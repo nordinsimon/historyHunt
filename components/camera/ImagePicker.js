@@ -49,7 +49,6 @@ const ImagePicker = ({ imageHandler }) => {
       });
       setPhoto(photo);
       imageHandler(photo.uri);
-      console.log("BILDBILDBILD", photo);
     }
   };
 
