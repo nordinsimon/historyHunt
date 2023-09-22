@@ -22,6 +22,9 @@ const AllHuntsScreen = ({ navigation }) => {
     setActiveHunts([...activeHunts, title]);
   };
 
+  console.log("activeHunts", activeHunts);
+  console.log("completedHunts", completedHunts);
+
   useEffect(() => {
     getData("hunts").then((data) => {
       const huntTitlesArray = [];
@@ -38,11 +41,68 @@ const AllHuntsScreen = ({ navigation }) => {
       setHuntTitles(huntTitlesArray);
       setIsLoading(false);
     });
-  }, [setAllData]);
+  }, [setAllData, activeHunts, completedHunts]);
 
   const navigateToSpecificHunt = (index) => {
     const huntData = allData[index];
     navigation.navigate("GameScreen", { huntData });
+  };
+
+  const CompletedHunts = () => {
+    // return hunt not clicable if it is in completed hunts
+    return (
+      <View>
+        {completedHunts.map((title, index) => (
+          <View key={index} style={styles.hunts}>
+            <Text style={styles.title}>{title}</Text>
+          </View>
+        ))}
+      </View>
+    );
+  };
+
+  const ActiveHunts = () => {
+    // return hunt clicable if it is in completed hunts
+    return (
+      <View>
+        {activeHunts.map((title, index) => (
+          <View key={index} style={styles.hunts}>
+            <Text
+              onPress={() => {
+                navigateToSpecificHunt(index);
+              }}
+              style={styles.title}
+            >
+              {title}
+            </Text>
+          </View>
+        ))}
+      </View>
+    );
+  };
+
+  const PlanedHunts = () => {
+    const planedHunts = huntTitles.filter(
+      (title) => !activeHunts.includes(title) && !completedHunts.includes(title)
+    );
+
+    return (
+      <View>
+        {planedHunts.map((title, index) => (
+          <View key={index} style={styles.hunts}>
+            <Text
+              onPress={() => {
+                navigateToSpecificHunt(index);
+                addActiveHunt(title);
+              }}
+              style={styles.title}
+            >
+              {title}
+            </Text>
+          </View>
+        ))}
+      </View>
+    );
   };
 
   return (
@@ -51,19 +111,12 @@ const AllHuntsScreen = ({ navigation }) => {
         <ActivityIndicator size="large" color="#0000ff" />
       ) : (
         <View>
-          {huntTitles.map((title, index) => (
-            <View key={index} style={styles.hunts}>
-              <Text
-                onPress={() => {
-                  navigateToSpecificHunt(index);
-                  addActiveHunt(title);
-                }}
-                style={styles.title}
-              >
-                {title}
-              </Text>
-            </View>
-          ))}
+          <Text style={styles.title}>Planed Hunts</Text>
+          <PlanedHunts />
+          <Text style={styles.title}>Active Hunts</Text>
+          <ActiveHunts />
+          <Text style={styles.title}>Completed Hunts</Text>
+          <CompletedHunts />
         </View>
       )}
       <View style={{ height: 50 }}></View>
