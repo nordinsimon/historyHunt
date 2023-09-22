@@ -72,58 +72,44 @@ const Navigation = () => {
     fetchToken();
   }, [authCtx]);
 
-  const DrawerNavigator = () => {
-    return (
-      <Drawer.Navigator
-        screenOptions={{
-          headerStyle: { backgroundColor: Colors.primary500 },
-          headerTintColor: "white",
-          contentStyle: { backgroundColor: Colors.primary100 },
-        }}
-        drawerContent={(props) => <CustomDrawerContent {...props} />}
-      >
-        <Drawer.Screen name="Profile" component={ProfileScreen} />
-        <Drawer.Screen
-          name="AddHunt"
-          component={SpecificHuntScreen}
-          options={({ navigation }) => ({
-            headerRight: ({ tintColor }) => (
-              <IconButton
-                icon="add"
-                color={tintColor}
-                size={24}
-                onPress={() => navigation.navigate("AddPlace")}
-              />
-            ),
-          })}
-        />
-      </Drawer.Navigator>
-    );
-  };
-
   return (
     <NavigationContainer>
       {authCtx.isAuthenticated ? (
-        <Stack.Navigator
+        <Drawer.Navigator
           screenOptions={{
-            headerStyle: { backgroundColor: Colors.background0 },
-            headerTintColor: "black",
-            headerBackTitleVisible: false,
+            headerStyle: { backgroundColor: Colors.primary500 },
+            headerTintColor: "white",
+            contentStyle: { backgroundColor: Colors.primary100 },
           }}
+          drawerContent={(props) => <CustomDrawerContent {...props} />}
         >
-          <Stack.Screen
-            name={"Drawer"}
-            component={DrawerNavigator}
+          <Drawer.Screen name="Profile" component={ProfileScreen} />
+          <Drawer.Screen
+            name="Add hunt"
+            component={SpecificHuntScreen}
+            options={({ navigation }) => ({
+              headerRight: ({ tintColor }) => (
+                <IconButton
+                  icon="add"
+                  color={tintColor}
+                  size={24}
+                  onPress={() => navigation.navigate("AddPlace")}
+                />
+              ),
+            })}
+          />
+          <Drawer.Screen
+            name="AddPlace"
+            component={AddplaceScreen}
             options={{ headerShown: false }}
           />
-          <Stack.Screen name="AddPlace" component={AddplaceScreen} />
-          <Stack.Screen
+          <Drawer.Screen
             name="MapScreen"
             component={MapScreen}
             options={{ title: "Choose location" }}
           />
-          <Stack.Screen name="GameScreen" component={GameScreen} />
-        </Stack.Navigator>
+          <Drawer.Screen name="GameScreen" component={GameScreen} />
+        </Drawer.Navigator>
       ) : (
         <AuthStack />
       )}

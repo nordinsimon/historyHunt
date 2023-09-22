@@ -26,7 +26,7 @@ const SpecificHuntScreen = ({ navigation, route }) => {
     });
     const postData = { title: huntTitle, places: placesWithoutImageUri };
     addNewData("hunts", postData);
-    navigation.navigate("AllHuntsScreen");
+    navigation.navigate("Profile");
   };
 
   return (

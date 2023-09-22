@@ -68,7 +68,8 @@ const styles = StyleSheet.create({
   },
   profilePictureContainer: {
     alignItems: "center",
-    marginTop: 80,
+    paddingTop: 80,
+    backgroundColor: "lightgrey",
   },
   profilePicture: {
     marginTop: 10,
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
     borderRadius: 1000,
     height: 130,
     width: 130,
-    backgroundColor: "red",
+    backgroundColor: "grey",
   },
   profilePictureEdit: {
     position: "absolute",

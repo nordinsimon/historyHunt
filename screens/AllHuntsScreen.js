@@ -29,7 +29,7 @@ const AllHuntsScreen = ({ navigation }) => {
       setHuntTitles(huntTitlesArray);
       setIsLoading(false);
     });
-  }, []);
+  }, [setAllData]);
 
   const navigateToSpecificHunt = (index) => {
     const huntData = allData[index];
@@ -37,11 +37,11 @@ const AllHuntsScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       {isLoading ? (
         <ActivityIndicator size="large" color="#0000ff" />
       ) : (
-        <ScrollView>
+        <View>
           {huntTitles.map((title, index) => (
             <View key={index} style={styles.hunts}>
               <Text
@@ -52,9 +52,10 @@ const AllHuntsScreen = ({ navigation }) => {
               </Text>
             </View>
           ))}
-        </ScrollView>
+        </View>
       )}
-    </View>
+      <View style={{ height: 50 }}></View>
+    </ScrollView>
   );
 };
 

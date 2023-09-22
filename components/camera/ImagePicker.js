@@ -52,7 +52,7 @@ const ImagePicker = ({ imageHandler, cameraViewFront }) => {
     }
   };
 
-  let previewContent = <Text>no potato yet</Text>;
+  let previewContent = <Text>no photo yet</Text>;
   if (photo) {
     previewContent = <Image source={{ uri: photo.uri }} style={styles.photo} />;
   }
