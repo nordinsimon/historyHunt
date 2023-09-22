@@ -5,10 +5,6 @@ import Button from "../ui/Button";
 import { Colors } from "../../constants/styles";
 
 const StartHunter = ({ onStartGame, firstLocation }) => {
-  console.log("firstLocation", firstLocation);
-  const imageURI = createLocationUrl(firstLocation);
-  console.log("imageURI", imageURI);
-
   return (
     <View style={styles.container}>
       <Image

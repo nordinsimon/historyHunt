@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../store/AuthContext";
 
 const url =
-  "https://historyhunt-affe2-default-rtdb.europe-west1.firebasedatabase.app/";
+  "https://authentication-app-614a8-default-rtdb.europe-west1.firebasedatabase.app/";
 
 export const addNewData = (location, value) => {
   fetch(url + `${location}.json`, {
