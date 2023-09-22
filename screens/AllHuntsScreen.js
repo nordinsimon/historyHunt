@@ -10,26 +10,30 @@ import { getData } from "../util/dataBaseReq";
 
 const AllHuntsScreen = ({ navigation }) => {
   const [huntTitles, setHuntTitles] = useState([]);
-  const [adressData, setAdressData] = useState([]);
+  const [allData, setAllData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     getData("hunts").then((data) => {
       const huntTitlesArray = [];
-      Object.keys(data).forEach((huntKey) => {
+      const allDataArray = [];
+
+      Object.keys(data).forEach((huntKey, index) => {
         const huntData = data[huntKey];
         if (huntData.title) {
           huntTitlesArray.push(huntData.title);
+          allDataArray.push(huntData);
         }
-        setAdressData(huntData);
       });
+      setAllData(allDataArray);
       setHuntTitles(huntTitlesArray);
       setIsLoading(false);
     });
   }, []);
 
-  const navigateToSpecificHunt = () => {
-    navigation.navigate("GameScreen", { adressData });
+  const navigateToSpecificHunt = (index) => {
+    const huntData = allData[index];
+    navigation.navigate("GameScreen", { huntData });
   };
 
   return (
@@ -40,7 +44,10 @@ const AllHuntsScreen = ({ navigation }) => {
         <ScrollView>
           {huntTitles.map((title, index) => (
             <View key={index}>
-              <Text onPress={navigateToSpecificHunt} style={styles.title}>
+              <Text
+                onPress={() => navigateToSpecificHunt(index)}
+                style={styles.title}
+              >
                 {title}
               </Text>
             </View>
