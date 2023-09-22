@@ -1,10 +1,16 @@
 import PlacesList from "../components/places/PlacesList";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import IconButton from "../components/ui/IconButton";
 import { View, StyleSheet } from "react-native";
 
 const AllPlacesScreen = () => {
   const navigation = useNavigation();
+  const route = useRoute();
+  const places = [];
+
+  if (route.params?.place) {
+    places.push(route.params.place);
+  }
 
   return (
     <View style={styles.headerContainer}>
@@ -15,7 +21,7 @@ const AllPlacesScreen = () => {
         }
         style={styles.addButton}
       />
-      <PlacesList />
+      <PlacesList places={places} />
     </View>
   );
 };

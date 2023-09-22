@@ -20,6 +20,8 @@ import AllPlacesScreen from "./screens/AllPlacesScreen";
 import AddplaceScreen from "./screens/AddPlaceScreen";
 import MapScreen from "./screens/MapScreen";
 
+import ProfilePage from "./components/profilePage/ProfilePage";
+
 //Tools
 import AuthContextProvider, { AuthContext } from "./store/AuthContext";
 import IconButton from "./components/ui/IconButton";
@@ -84,6 +86,7 @@ const Navigation = () => {
           drawerContent={(props) => <CustomDrawerContent {...props} />}
         >
           <Drawer.Screen name="Welcome" component={WelcomeScreen} />
+          <Drawer.Screen name="ProfilePage" component={ProfilePage} />
           <Drawer.Screen
             name="AllPlacesScreen"
             component={AllPlacesScreen}

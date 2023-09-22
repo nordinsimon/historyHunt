@@ -8,8 +8,9 @@ import {
   requestForegroundPermissionsAsync,
   getCurrentPositionAsync,
 } from "expo-location";
+import OutlinedButton from "../ui/OutlinedButton";
 
-const ImagePicker = () => {
+const ImagePicker = ({ imageHandler }) => {
   const cameraRef = useRef();
   const [photo, setPhoto] = useState();
   const [isCameraReady, setCameraReady] = useState(false);
@@ -47,6 +48,8 @@ const ImagePicker = () => {
         quality: 0.8,
       });
       setPhoto(photo);
+      imageHandler(photo.uri);
+      console.log("BILDBILDBILD", photo);
     }
   };
 
@@ -62,15 +65,14 @@ const ImagePicker = () => {
         ref={cameraRef}
         type={Camera.Constants.Type.back}
         onCameraReady={handleCameraReady}
-      >
-        <IconButton
-          icon="camera"
-          size={32}
-          color={Colors.primary100}
-          onPress={takePicture}
-        />
-      </Camera>
-      <View style={styles.preview}>{previewContent}</View>
+      ></Camera>
+      <OutlinedButton
+        icon="camera"
+        size={32}
+        color={Colors.primary100}
+        pressHandler={takePicture}
+      />
+      {photo && <View style={styles.preview}>{previewContent}</View>}
     </View>
   );
 };

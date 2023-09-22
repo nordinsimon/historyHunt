@@ -11,16 +11,16 @@ const WelcomeScreen = () => {
   const [message, setMessage] = useState(null);
   const navigation = useNavigation();
   const authCtx = useContext(AuthContext);
-  useEffect(() => {
+  /*   useEffect(() => {
     axios
       .get(
-        "https://authentication-app-614a8-default-rtdb.europe-west1.firebasedatabase.app/test.json?auth=" +
+        "https://historyhunt-affe2-default-rtdb.europe-west1.firebasedatabase.app/test.json?auth=" +
           authCtx.token
       )
       .then((resp) => {
         setMessage(resp.data);
       });
-  }, []);
+  }, []); */
 
   const navigatToAllPlaces = () => {
     navigation.navigate("AllPlacesScreen");
@@ -32,6 +32,7 @@ const WelcomeScreen = () => {
       <Text>You authenticated successfully!</Text>
       <Text>Message from server: {message}</Text>
       <Button onPress={navigatToAllPlaces}>Go to places</Button>
+      <Button>Add data</Button>
     </View>
   );
 };

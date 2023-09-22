@@ -1,9 +1,9 @@
 import { FlatList, StyleSheet, View, Text } from "react-native";
-import IconButton from "../ui/IconButton";
 import { Colors } from "../../constants/styles";
+import PlaceItem from "./PlaceItem";
 
 const PlacesList = ({ places }) => {
-  if (!places || places.length === 0) {
+  if (!places || places.length < 1) {
     return (
       <View style={styles.fallbackContainer}>
         <Text style={styles.fallbackText}>No places added yet</Text>
