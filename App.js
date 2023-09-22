@@ -19,6 +19,7 @@ import ProfileScreen from "./screens/ProfileScreen";
 import SpecificHuntScreen from "./screens/SpecificHuntScreen";
 import AddplaceScreen from "./screens/AddPlaceScreen";
 import MapScreen from "./screens/MapScreen";
+import AllHuntsScreen from "./screens/AllHuntsScreen";
 import GameScreen from "./screens/GameScreen";
 
 //Tools
@@ -85,6 +86,7 @@ const Navigation = () => {
           drawerContent={(props) => <CustomDrawerContent {...props} />}
         >
           <Drawer.Screen name="Profile" component={ProfileScreen} />
+          <Drawer.Screen name="AllHuntsScreen" component={AllHuntsScreen} />
           <Drawer.Screen
             name="SpecificHuntScreen"
             component={SpecificHuntScreen}

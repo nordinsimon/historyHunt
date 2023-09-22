@@ -1,19 +1,12 @@
 import { Text, View, StyleSheet, Image } from "react-native";
 import ImagePicker from "../components/camera/ImagePicker";
-import React, { Component, useState, useContext } from "react";
+import React, { Component, useState } from "react";
 import IconButton from "../components/ui/IconButton";
 
-import AllHuntsView from "../components/hunts/AllHuntsView";
-
-import { AuthContext } from "../store/AuthContext";
-
-const ProfilePage = ({ navigation }) => {
+const ProfilePage = () => {
   const [editProfilePicture, setEditProfilePicture] = useState(false);
   const [profilePictureExists, setProfilePictureExists] = useState(false);
   const [profilePicture, setProfilePicture] = useState();
-
-  const authCtx = useContext(AuthContext);
-  const username = authCtx.username;
 
   const editProfilePictureButton = () => {
     console.log("edit profile picture");
@@ -53,10 +46,9 @@ const ProfilePage = ({ navigation }) => {
               />
             </View>
           </View>
-          <Text style={styles.username}>{username}</Text>
+          <Text style={styles.username}>Username</Text>
         </View>
         <Text style={styles.header}>Hunts:</Text>
-        <AllHuntsView navigation={navigation} />
       </View>
     );
   }

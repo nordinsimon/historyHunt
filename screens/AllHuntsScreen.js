@@ -6,7 +6,7 @@ import {
   Text,
 } from "react-native";
 import React, { useState, useEffect } from "react";
-import { getData } from "../../util/dataBaseReq";
+import { getData } from "../util/dataBaseReq";
 
 const AllHuntsScreen = ({ navigation }) => {
   const [huntTitles, setHuntTitles] = useState([]);
@@ -39,7 +39,7 @@ const AllHuntsScreen = ({ navigation }) => {
       ) : (
         <ScrollView>
           {huntTitles.map((title, index) => (
-            <View key={index} style={styles.hunts}>
+            <View key={index}>
               <Text onPress={navigateToSpecificHunt} style={styles.title}>
                 {title}
               </Text>
@@ -60,12 +60,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: "bold",
-  },
-  hunts: {
-    padding: 16,
-    marginVertical: 8,
-    borderWidth: 1,
-    borderRadius: 10,
   },
 });
 
