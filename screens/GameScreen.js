@@ -26,6 +26,7 @@ const GameScreen = ({ route, navigation }) => {
           quitGame={quitGame}
           gameLocations={huntData.places}
           navigation={navigation}
+          title={huntData.title}
         />
       ) : (
         <StartHunter onStartGame={onStartGame} firstLocation={{ lat, lng }} />

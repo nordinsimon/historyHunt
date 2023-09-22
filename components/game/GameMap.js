@@ -1,18 +1,22 @@
 import MapView, { Marker } from "react-native-maps";
 import { StyleSheet, View, ScrollView, Text, Image } from "react-native";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import ImagePicker from "../camera/ImagePicker";
 
-import Button from "../ui/Button";
-import { set } from "react-native-reanimated";
+import { AuthContext } from "../../store/AuthContext";
 
-const GameMap = ({ navigation, quitGame, gameLocations }) => {
-  const [markAsCompleted, setMarkAsCompleted] = useState(false);
+import Button from "../ui/Button";
+
+const GameMap = ({ navigation, quitGame, gameLocations, title }) => {
   const [initialRegion, setInitialRegion] = useState(null);
   const [mode, setMode] = useState("game");
   const [markers, setMarkers] = useState(gameLocations.length);
   const [completedMarkers, setCompletedMarkers] = useState(0);
   const [imageGlobal, setImageGlobal] = useState();
+
+  const authCtx = useContext(AuthContext);
+  const { activeHunts, setActiveHunts, completedHunts, setCompletedHunts } =
+    authCtx;
 
   useEffect(() => {
     if (gameLocations.length > 0) {
@@ -26,8 +30,14 @@ const GameMap = ({ navigation, quitGame, gameLocations }) => {
     }
   }, [gameLocations]);
 
+  const exitGame = () => {
+    setInitialRegion(null);
+    quitGame();
+  };
+
   const completeHandler = () => {
-    setMarkAsCompleted(true);
+    setActiveHunts(activeHunts.filter((hunt) => hunt !== title));
+    setCompletedHunts([...completedHunts, title]);
     setInitialRegion(null);
     quitGame();
   };
@@ -58,7 +68,11 @@ const GameMap = ({ navigation, quitGame, gameLocations }) => {
 
   const PrewiewPhoto = () => {
     const photoCompleted = () => {
-      setMode("game");
+      if (completedMarkers === markers) {
+        setMode("completed");
+      } else {
+        setMode("game");
+      }
       setImageGlobal(null);
     };
 
@@ -100,10 +114,23 @@ const GameMap = ({ navigation, quitGame, gameLocations }) => {
           initialRegion={initialRegion}
         >
           <Markers />
-          <Button style={styles.button} onPress={completeHandler}>
-            Complete
+          <Button style={styles.button} onPress={exitGame}>
+            Exit
           </Button>
         </MapView>
+      </View>
+    );
+  };
+
+  const Completed = () => {
+    return (
+      <View>
+        <Text style={styles.text}>
+          Congratulations you have completed the hunt!
+        </Text>
+        <Button style={styles.button} onPress={completeHandler}>
+          Complete
+        </Button>
       </View>
     );
   };
@@ -115,6 +142,8 @@ const GameMap = ({ navigation, quitGame, gameLocations }) => {
       return <TakePicture />;
     case "previewPhoto":
       return <PrewiewPhoto />;
+    case "completed":
+      return <Completed />;
   }
 };
 
@@ -133,5 +162,11 @@ const styles = StyleSheet.create({
   image: {
     height: 130,
     width: 130,
+  },
+  text: {
+    marginVertical: 40,
+    margin: 20,
+    fontSize: 20,
+    fontWeight: "bold",
   },
 });

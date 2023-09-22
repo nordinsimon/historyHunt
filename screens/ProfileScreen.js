@@ -13,15 +13,13 @@ const ProfilePage = ({ navigation }) => {
   const [profilePicture, setProfilePicture] = useState();
 
   const authCtx = useContext(AuthContext);
-  const username = authCtx.username;
+  const { username, activeHunts } = authCtx;
 
   const editProfilePictureButton = () => {
-    console.log("edit profile picture");
     setEditProfilePicture(true);
   };
 
   const imageHandler = (uri) => {
-    console.log("imageHandler", uri);
     const newProfilePicture = { image: uri };
     setProfilePicture(newProfilePicture);
     setProfilePictureExists(true);

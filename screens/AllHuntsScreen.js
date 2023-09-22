@@ -5,13 +5,22 @@ import {
   StyleSheet,
   Text,
 } from "react-native";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { getData } from "../util/dataBaseReq";
+
+import { AuthContext } from "../store/AuthContext";
 
 const AllHuntsScreen = ({ navigation }) => {
   const [huntTitles, setHuntTitles] = useState([]);
   const [allData, setAllData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const authCtx = useContext(AuthContext);
+  const { activeHunts, setActiveHunts, completedHunts } = authCtx;
+
+  const addActiveHunt = (title) => {
+    setActiveHunts([...activeHunts, title]);
+  };
 
   useEffect(() => {
     getData("hunts").then((data) => {
@@ -45,7 +54,10 @@ const AllHuntsScreen = ({ navigation }) => {
           {huntTitles.map((title, index) => (
             <View key={index} style={styles.hunts}>
               <Text
-                onPress={() => navigateToSpecificHunt(index)}
+                onPress={() => {
+                  navigateToSpecificHunt(index);
+                  addActiveHunt(title);
+                }}
                 style={styles.title}
               >
                 {title}
