@@ -19,7 +19,6 @@ import ProfileScreen from "./screens/ProfileScreen";
 import SpecificHuntScreen from "./screens/SpecificHuntScreen";
 import AddplaceScreen from "./screens/AddPlaceScreen";
 import MapScreen from "./screens/MapScreen";
-import AllHuntsScreen from "./screens/AllHuntsScreen";
 import GameScreen from "./screens/GameScreen";
 
 //Tools
@@ -41,7 +40,6 @@ const AuthStack = () => {
     >
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Signup" component={SignupScreen} />
-      {/* Får inte mapscreen till att fungera här...  */}
     </Stack.Navigator>
   );
 };
@@ -86,7 +84,6 @@ const Navigation = () => {
           drawerContent={(props) => <CustomDrawerContent {...props} />}
         >
           <Drawer.Screen name="Profile" component={ProfileScreen} />
-          <Drawer.Screen name="AllHuntsScreen" component={AllHuntsScreen} />
           <Drawer.Screen
             name="SpecificHuntScreen"
             component={SpecificHuntScreen}

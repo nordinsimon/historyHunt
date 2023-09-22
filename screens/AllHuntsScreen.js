@@ -43,7 +43,7 @@ const AllHuntsScreen = ({ navigation }) => {
       ) : (
         <ScrollView>
           {huntTitles.map((title, index) => (
-            <View key={index}>
+            <View key={index} style={styles.hunts}>
               <Text
                 onPress={() => navigateToSpecificHunt(index)}
                 style={styles.title}
@@ -67,6 +67,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: "bold",
+  },
+  hunts: {
+    padding: 16,
+    marginVertical: 8,
+    borderWidth: 1,
+    borderRadius: 10,
   },
 });
 

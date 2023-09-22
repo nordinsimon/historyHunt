@@ -12,8 +12,10 @@ const LoginScreen = () => {
   const authenticationHandler = async ({ email, password }) => {
     setIsAuthenticating(true);
     try {
-      const token = await http.signinUser(email, password);
+      const data = await http.signinUser(email, password);
+      const token = data.idToken;
       authCtx.authenticate(token);
+      authCtx.setUsername(data.displayName);
     } catch (error) {
       alert("Wrong credentials");
     }

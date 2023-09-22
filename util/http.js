@@ -42,7 +42,7 @@ const authenticate = async (mode, email, password) => {
   }
 
   const data = await response.json();
-  return data.idToken;
+  return data;
 };
 
 export const signupUser = (email, password) => {
