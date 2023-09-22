@@ -10,7 +10,7 @@ import {
 } from "expo-location";
 import OutlinedButton from "../ui/OutlinedButton";
 
-const ImagePicker = ({ imageHandler }) => {
+const ImagePicker = ({ imageHandler, cameraViewFront }) => {
   const cameraRef = useRef();
   const [photo, setPhoto] = useState();
   const [isCameraReady, setCameraReady] = useState(false);
@@ -57,12 +57,17 @@ const ImagePicker = ({ imageHandler }) => {
     previewContent = <Image source={{ uri: photo.uri }} style={styles.photo} />;
   }
 
+  let cameraType = Camera.Constants.Type.back;
+  if (cameraViewFront) {
+    cameraType = Camera.Constants.Type.front;
+  }
+
   return (
     <View style={styles.container}>
       <Camera
         style={styles.camera}
         ref={cameraRef}
-        type={Camera.Constants.Type.back}
+        type={cameraType}
         onCameraReady={handleCameraReady}
       ></Camera>
       <OutlinedButton

@@ -21,6 +21,8 @@ import SpecificHuntScreen from "./screens/SpecificHuntScreen";
 import AddplaceScreen from "./screens/AddPlaceScreen";
 import MapScreen from "./screens/MapScreen";
 
+import ProfilePage from "./screens/ProfilePage";
+
 //Tools
 import AuthContextProvider, { AuthContext } from "./store/AuthContext";
 import IconButton from "./components/ui/IconButton";
@@ -85,6 +87,7 @@ const Navigation = () => {
           drawerContent={(props) => <CustomDrawerContent {...props} />}
         >
           <Drawer.Screen name="Welcome" component={WelcomeScreen} />
+          <Drawer.Screen name="Profile" component={ProfilePage} />
           <Drawer.Screen
             name="SpecificHuntScreen"
             component={SpecificHuntScreen}
