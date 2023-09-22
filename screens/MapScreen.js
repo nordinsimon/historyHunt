@@ -11,7 +11,6 @@ const MapScreen = ({ navigation }) => {
       Alert.alert("No location picked!");
       return;
     }
-    console.log("Picked location", pickedLocation);
     navigation.navigate("AddPlace", pickedLocation);
   }, [navigation, pickedLocation]);
 
@@ -42,7 +41,6 @@ const MapScreen = ({ navigation }) => {
       latitude,
       longitude,
     });
-    console.log("Picked location", pickedLocation);
   };
 
   return (
