@@ -21,8 +21,10 @@ const PlaceForm = ({ addPlaceHandler }) => {
 
   const savePoint = () => {
     const place = new Place(title, image, location);
-    console.log("savedPOINT", place);
     addPlaceHandler(place);
+    setTitle("");
+    setImage();
+    setLocation();
   };
 
   return (
