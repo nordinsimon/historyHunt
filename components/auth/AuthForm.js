@@ -5,6 +5,7 @@ import Button from "../ui/Button";
 import Input from "./Input";
 
 const AuthForm = ({ isLogin, onSubmit, credentialsInvalid }) => {
+  const [displayName, setDisplayName] = useState("");
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredConfirmEmail, setEnteredConfirmEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
@@ -19,6 +20,9 @@ const AuthForm = ({ isLogin, onSubmit, credentialsInvalid }) => {
 
   const updateInputValueHandler = (inputType, enteredValue) => {
     switch (inputType) {
+      case "displayName":
+        setDisplayName(enteredValue);
+        break;
       case "email":
         setEnteredEmail(enteredValue);
         break;
@@ -36,6 +40,7 @@ const AuthForm = ({ isLogin, onSubmit, credentialsInvalid }) => {
 
   const submitHandler = () => {
     onSubmit({
+      displayName: displayName,
       email: enteredEmail,
       confirmEmail: enteredConfirmEmail,
       password: enteredPassword,
@@ -46,6 +51,11 @@ const AuthForm = ({ isLogin, onSubmit, credentialsInvalid }) => {
   return (
     <View style={styles.form}>
       <View>
+        <Input
+          label="Username"
+          onUpdateValue={updateInputValueHandler.bind(this, "displayName")}
+          value={displayName}
+        />
         <Input
           label="Email Address"
           onUpdateValue={updateInputValueHandler.bind(this, "email")}

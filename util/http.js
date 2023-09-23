@@ -19,7 +19,7 @@ export const getReadableAddress = async ({ lat, lng }) => {
   return data.results[0].formatted_address;
 };
 
-const authenticate = async (mode, email, password) => {
+const authenticate = async (mode, displayName, email, password) => {
   const url = `https://identitytoolkit.googleapis.com/v1/accounts:${mode}?key=${API_KEY}`;
 
   const requestOptions = {
@@ -28,6 +28,7 @@ const authenticate = async (mode, email, password) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
+      displayName,
       email,
       password,
       returnSecureToken: true,
@@ -45,8 +46,8 @@ const authenticate = async (mode, email, password) => {
   return data;
 };
 
-export const signupUser = (email, password) => {
-  return authenticate("signUp", email, password);
+export const signupUser = (email, password, displayName) => {
+  return authenticate("signUp", displayName, email, password);
 };
 
 export const signinUser = (email, password) => {

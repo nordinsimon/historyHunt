@@ -9,11 +9,13 @@ const SignupScreen = () => {
   const [isAuthenticating, setIsAuthenticating] = useState(false);
   const authCtx = useContext(AuthContext);
 
-  const authenticationHandler = async ({ email, password }) => {
+  const authenticationHandler = async ({ email, password, displayName }) => {
     setIsAuthenticating(true);
     try {
-      const token = await http.signupUser(email, password);
+      const data = await http.signupUser(email, password, displayName);
+      const token = data.idToken;
       authCtx.authenticate(token);
+      authCtx.setUsername(data.displayName);
     } catch (error) {
       console.log(error);
       alert("Wrong credentials");

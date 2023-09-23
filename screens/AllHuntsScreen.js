@@ -62,7 +62,6 @@ const AllHuntsScreen = ({ navigation }) => {
   };
 
   const ActiveHunts = () => {
-    // return hunt clicable if it is in completed hunts
     return (
       <View>
         {activeHunts.map((title, index) => (
