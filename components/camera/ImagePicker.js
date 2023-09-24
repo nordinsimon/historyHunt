@@ -1,13 +1,10 @@
 import { View, StyleSheet, Text, Image } from "react-native";
-import { Camera, CameraType } from "expo-camera";
+import { Camera } from "expo-camera";
 import IconButton from "../ui/IconButton";
 import { useRef, useState, useEffect } from "react";
 import { Dimensions } from "react-native";
 import { Colors } from "../../constants/styles";
-import {
-  requestForegroundPermissionsAsync,
-  getCurrentPositionAsync,
-} from "expo-location";
+import { requestForegroundPermissionsAsync } from "expo-location";
 import OutlinedButton from "../ui/OutlinedButton";
 
 const ImagePicker = ({ imageHandler, cameraViewFront }) => {

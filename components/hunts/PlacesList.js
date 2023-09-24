@@ -6,9 +6,7 @@ const PlacesList = ({ places }) => {
   if (!places || places.length < 1) {
     return (
       <View style={styles.fallbackContainer}>
-        <Text style={styles.fallbackText}>
-          Press + in the upper right corner to add a history point
-        </Text>
+        <Text style={styles.fallbackText}>Press + to add a history place</Text>
       </View>
     );
   }
@@ -35,7 +33,8 @@ const styles = StyleSheet.create({
   },
   fallbackText: {
     textAlign: "center",
-    fontSize: 18,
+    fontSize: 20,
     color: Colors.primary800,
+    marginHorizontal: 60,
   },
 });

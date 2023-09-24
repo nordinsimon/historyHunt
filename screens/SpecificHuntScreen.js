@@ -1,7 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { View, StyleSheet, TextInput } from "react-native";
 
-// Comp + util
 import PlacesList from "../components/hunts/PlacesList";
 import IconButton from "../components/ui/IconButton";
 import Button from "../components/ui/Button";
@@ -48,12 +47,13 @@ const SpecificHuntScreen = ({ navigation, route }) => {
         }
         style={styles.addButton}
       />
-      <PlacesList places={places} />
       <TextInput
         style={styles.input}
         placeholder="Hunt name"
         onChangeText={setHuntTitle}
       />
+      <PlacesList places={places} />
+
       <Button style={styles.button} onPress={saveHunt}>
         Save point
       </Button>
@@ -75,9 +75,7 @@ const styles = StyleSheet.create({
   },
   input: {
     fontSize: 16,
-    borderBottomColor: Colors.primary800,
     color: Colors.primary800,
-    borderBottomWidth: 1,
     marginVertical: 8,
     paddingHorizontal: 4,
     paddingVertical: 8,

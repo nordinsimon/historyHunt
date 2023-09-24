@@ -1,4 +1,3 @@
-//Main
 import { useContext, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -12,7 +11,6 @@ import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-//Screens
 import LoginScreen from "./screens/LoginScreen";
 import SignupScreen from "./screens/SignupScreen";
 import ProfileScreen from "./screens/ProfileScreen";
@@ -21,7 +19,6 @@ import AddplaceScreen from "./screens/AddPlaceScreen";
 import MapScreen from "./screens/MapScreen";
 import GameScreen from "./screens/GameScreen";
 
-//Tools
 import AuthContextProvider, { AuthContext } from "./store/AuthContext";
 import IconButton from "./components/ui/IconButton";
 import { Colors } from "./constants/styles";
@@ -29,7 +26,7 @@ import { Colors } from "./constants/styles";
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
-const AuthStack = () => {
+const Login = () => {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -125,7 +122,7 @@ const Navigation = () => {
           <Stack.Screen name="GameScreen" component={GameScreen} />
         </Stack.Navigator>
       ) : (
-        <AuthStack />
+        <Login />
       )}
     </NavigationContainer>
   );

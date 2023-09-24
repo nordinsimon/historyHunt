@@ -90,7 +90,6 @@ const styles = StyleSheet.create({
     borderRadius: 10000,
     borderColor: "purple",
     borderWidth: 5,
-    borderStyle: "solid",
   },
 
   header: {
