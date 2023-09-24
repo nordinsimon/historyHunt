@@ -16,7 +16,7 @@ const AllHuntsScreen = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const authCtx = useContext(AuthContext);
-  const { activeHunts, setActiveHunts, completedHunts } = authCtx;
+  const { activeHunts, setActiveHunts, completedHunts, reload } = authCtx;
 
   const addActiveHunt = (title) => {
     setActiveHunts([...activeHunts, title]);
@@ -41,7 +41,7 @@ const AllHuntsScreen = ({ navigation }) => {
       setHuntTitles(huntTitlesArray);
       setIsLoading(false);
     });
-  }, [setAllData, activeHunts, completedHunts]);
+  }, [setAllData, activeHunts, completedHunts, reload]);
 
   const navigateToSpecificHunt = (index) => {
     const huntData = allData[index];
@@ -49,7 +49,6 @@ const AllHuntsScreen = ({ navigation }) => {
   };
 
   const CompletedHunts = () => {
-    // return hunt not clicable if it is in completed hunts
     return (
       <View>
         {completedHunts.map((title, index) => (

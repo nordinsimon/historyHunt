@@ -51,11 +51,13 @@ const AuthForm = ({ isLogin, onSubmit, credentialsInvalid }) => {
   return (
     <View style={styles.form}>
       <View>
-        <Input
-          label="Username"
-          onUpdateValue={updateInputValueHandler.bind(this, "displayName")}
-          value={displayName}
-        />
+        {!isLogin && (
+          <Input
+            label="Username"
+            onUpdateValue={updateInputValueHandler.bind(this, "displayName")}
+            value={displayName}
+          />
+        )}
         <Input
           label="Email Address"
           onUpdateValue={updateInputValueHandler.bind(this, "email")}

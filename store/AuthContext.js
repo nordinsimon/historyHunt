@@ -13,6 +13,7 @@ const AuthContextProvider = ({ children }) => {
   const [username, setUsername] = useState("");
   const [activeHunts, setActiveHunts] = useState([]);
   const [completedHunts, setCompletedHunts] = useState([]);
+  const [reload, setReload] = useState(false);
   const isAuthenticated = !!token;
   const authenticate = (token) => {
     setToken(token);
@@ -35,6 +36,8 @@ const AuthContextProvider = ({ children }) => {
     setActiveHunts,
     completedHunts,
     setCompletedHunts,
+    reload,
+    setReload,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
